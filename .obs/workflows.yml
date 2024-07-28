@@ -1,0 +1,20 @@
+# rebuild main branch
+workflow_rebuild_main:
+  steps:
+
+    # refetch the source code
+    - trigger_services:
+        project: home:zachspar
+        package: parq
+
+    # rebuild the package
+    - rebuild_package:
+        project: home:zachspar
+        package: parq
+
+  # only run on push to main
+  filters:
+    event: push
+    branches:
+      only:
+        - main

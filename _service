@@ -1,0 +1,21 @@
+<services>
+  <service name="cargo_vendor" mode="manual">
+    <param name="srcdir">parquet-py</param>
+    <param name="compression">xz</param>
+    <param name="update">true</param>
+  </service>
+  <service name="cargo_audit" mode="manual" />
+  <service name="obs_scm">
+    <param name="url">https://github.com/zachspar/parq-obs.git</param>
+    <param name="scm">git</param>
+    <param name="revision">main</param>
+    <param name="extract">*.tar.gz</param>
+    <param name="extract">*.tar.xz</param>
+    <param name="extract">*.spec</param>
+  </service>
+  <service name="tar" mode="buildtime" />
+  <service name="recompress" mode="buildtime">
+    <param name="file">*.tar</param>
+    <param name="compression">xz</param>
+  </service>
+</services>
